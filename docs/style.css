@@ -1,15 +1,30 @@
 body {
     background-color: rgb(19,174,214);
     overflow-x: scroll;
+    width: 10000px;
 }
 
 body::-webkit-scrollbar {
     display: none;
 }
 
-#test {
-    position: absolute;
-    left: 200px;
-    width: 50px;
+#space {
+    color: rgb(19,174,214);
+    width: 10000px;
+}
+
+#melody {
+    display: flex;
+}
+
+.s8 {
     background-color: coral;
+    width: 100px;
+}
+
+#test {
+    background-color: darkgoldenrod;
+    position: absolute;
+    top: 200px;
+    left: 200px;
 }

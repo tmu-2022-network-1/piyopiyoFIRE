@@ -1,14 +1,22 @@
 var counter = 0;
+var currentX;
 
 function draw()
 {
     ellipse(50, 50, 80, 80);
 }
 
+function samplePlay()
+{
+    const sample = new Audio('./images/う.mp3');
+    sample.volume = 0.1;
+    sample.play();
+}
+
 function musicPlay()
 {
     counter = 1;
-    const music = new Audio('./images/test.mp3');
+    const music = new Audio('./images/B♭4.mp3');
     music.volume = 0.1;
     music.play();
 
@@ -16,7 +24,7 @@ function musicPlay()
     setTimeout(function(){
         counter = 0;
         console.log("counter=0");
-    }, 500)
+    }, 300)
 }
 
 //要素が指定の位置にきたらオーディオを再生する
@@ -34,8 +42,8 @@ function audioPlay()
     var x = clientRectC.left;
     //console.log(x); //できてる
 
-    //要素が画面の左端にきたらオーディオを再生
-    if (x < 0)
+    //要素が画面の左端にきたら（要素のx座標が０を跨いだら）オーディオを再生
+    if (currentX * x < 0)
     {
         if (counter === 0)
         {
@@ -46,6 +54,13 @@ function audioPlay()
             return; //できたけど戻ると何回も再生できちゃう
         }
     }
+
+    //要素の最新の座標を保存
+    currentX = x;
 }
 
 window.addEventListener("scroll", audioPlay);
+//リロード時の再生判定用カウンターをリセット
+window.addEventListener("load", function(){
+    counter = 0;
+})
