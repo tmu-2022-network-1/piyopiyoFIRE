@@ -1,0 +1,15 @@
+body {
+    background-color: rgb(19,174,214);
+    overflow-x: scroll;
+}
+
+body::-webkit-scrollbar {
+    display: none;
+}
+
+#test {
+    position: absolute;
+    left: 200px;
+    width: 50px;
+    background-color: coral;
+}
