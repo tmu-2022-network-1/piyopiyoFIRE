@@ -1,30 +1,89 @@
 body {
-    background-color: rgb(19,174,214);
-    overflow-x: scroll;
-    width: 10000px;
+  margin: 0px;
+  padding: 0px;
+  background-color: rgb(233, 172, 5);
 }
+
+.screen {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 500px;
+}
+
+.top {
+  animation-delay: 3s;
+}
+
+#discription {
+  visibility: hidden;
+}
+
+#base {
+  perspective: 1px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#con1 {
+  z-index: 0;
+  visibility: hidden;
+}
+
+#con2 {
+  z-index: -1;
+  visibility: hidden;
+}
+
 
 body::-webkit-scrollbar {
-    display: none;
+    
 }
 
-#space {
-    color: rgb(19,174,214);
-    width: 10000px;
+#down {
+  margin: 20px;
+  position: fixed;
+  bottom: 0px;
+  right: 0px;
 }
 
-#melody {
-    display: flex;
+#scaler {
+  transform-style: preserve-3d;
+  transform: translateZ(-100);
 }
 
-.s8 {
-    background-color: coral;
-    width: 100px;
+.contents {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation-delay: 1s;
 }
 
-#test {
-    background-color: darkgoldenrod;
-    position: absolute;
-    top: 200px;
-    left: 200px;
+.danchis {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation-delay: 1s;
+}
+
+.fadeIn{
+  animation: fadeIn 3s ease forwards;
+  opacity: 0;
+}
+  
+  @keyframes fadeIn{
+    from {
+      opacity: 0;
+    }
+  
+    to {
+      opacity: 1;
+    }
+  }
+
+#scroll {
+  visibility: hidden;
 }

@@ -4,22 +4,40 @@
     <meta charset="utf-8">
     <title>piyopiyoFIRE</title>
     <link rel="stylesheet" href="style.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.js"></script>
   </head>
 
   <body>
-    <input type="button" value="再生" onclick="samplePlay()">
-    <div id="melody">
-      <div class="B♭4 s8">B♭4</div>
-      <div class="C4 s8">C4</div>
-      <div class="D4 s8">D4</div>
-      <div class="E4 s8">E4</div>
-      <div class="F4 s8">F4</div>
-      <div class="G4 s8">G4</div>
+    <div class="screen">
+      <img id="title" class="top fadeIn" src="images/title.png">
     </div>
-    <div id="test">テスト</div>
+    <div class="screen">
+      <img id="discription" class="top" src="images/discription.png">
+    </div>
+    
+    <div id="base" class="screen">
+      <img id="danchi" class="danchis" src="images/danchi.png">
+      <img id="treeL" class="danchis" src="images/tree_left.png">
+      <img id="treeR" class="danchis" src="images/tree_right.png">
+      <img id="cloudL" class="danchis" src="images/cloud_left.png">
+      <img id="cloudR" class="danchis" src="images/cloud_right.png">
 
+      <img id="con2" class="contents foward" src="images/1-1.png">
+      <img id="con1" class="contents back" src="images/1-2.png">
+    </div>
+    
 
+    <div id="scroll"></div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/ScrollTrigger.min.js"></script>
+    <script src="luxy.js-master/dist/js/luxy.min.js"></script>
+    <script charset="utf-8">
+      luxy.init();
+    </script>
     <script src="script.js"></script>
   </body>
+
+  <footer>
+    <div id="down">down</div>
+  </footer>
 </html>

@@ -1,66 +1,149 @@
-var counter = 0;
-var currentX;
+gsap.registerPlugin(ScrollTrigger);
 
-function draw()
+var sw;
+var sh;
+var y;
+var contents = [];
+var tops = [];
+var danchis = [];
+var zoomRate = 1000; //画像のズーム割合
+
+var fadein; //フェードイン開始位置
+var p1; //メインコンテンツのz移動開始位置
+
+function getScreenSize()
 {
-    ellipse(50, 50, 80, 80);
+    //現在のウィンドウサイズを取得
+    sw = window.innerWidth
+    sh = window.innerHeight
+    console.log(sw + "," + sh);
+
+    makeContents();
 }
 
-function samplePlay()
+function makeContents()
 {
-    const sample = new Audio('./images/う.mp3');
-    sample.volume = 0.1;
-    sample.play();
-}
+    //スクロール用の要素の高さを設定
+    var scroll = document.getElementById("scroll");
+    scroll.style.width = `${sw}px`;
+    scroll.style.height = `${sh * 50}px`;
 
-function musicPlay()
-{
-    counter = 1;
-    const music = new Audio('./images/B♭4.mp3');
-    music.volume = 0.1;
-    music.play();
+    fadein = sh * 1.3;
+    p1 = sh * 4;
+    p2 = p1 + zoomRate;
 
-    //1秒経過したらカウンターを0にする、リロードすると再生されなくなる？
-    setTimeout(function(){
-        counter = 0;
-        console.log("counter=0");
-    }, 300)
-}
+    var screen = [];
+    screen = document.getElementsByClassName("screen");
 
-//要素が指定の位置にきたらオーディオを再生する
-function audioPlay()
-{
-    //オーディオ音源を指定（配列？）
-    const c = new Audio('./images/う.mp3');
-
-    var targetElement = document.getElementById("test");
-
-    //c要素の位置座標を取得
-    var clientRectC = targetElement.getBoundingClientRect();
-    
-    //画面の左端からc要素の左端までの距離
-    var x = clientRectC.left;
-    //console.log(x); //できてる
-
-    //要素が画面の左端にきたら（要素のx座標が０を跨いだら）オーディオを再生
-    if (currentX * x < 0)
+    for (k=0; k < screen.length; k++)
     {
-        if (counter === 0)
+        screen[k].style.height = `${sh}px`;
+        screen[k].style.width = `${sw}px`;
+    }
+
+    //基準となる枠、画面サイズに合わせて常に中央に配置
+    var base = document.getElementById("base");
+    //奥スクロール開始位置を指定
+    //base.style.marginTop = "500px";
+    base.style.height = `${sh}px`;
+    base.style.width = `${sw}px`;
+    base.style.position = "sticky";
+    base.style.top = 0;
+
+    //画面サイズに合わせて画像サイズを設定
+    tops = document.getElementsByClassName("top")
+    for ( a=0; a < tops.length; a++)
+    {
+        tops[a].style.width = "70%";
+    }
+
+    contents = document.getElementsByClassName("contents");
+    for( i=0; i < contents.length; i++)
+    {
+        contents[i].style.width = "70%";
+    }
+
+    danchis = document.getElementsByClassName("danchis");
+    if ( sh < sw )
+    {
+        for ( j=0; j < danchis.length; j++)
         {
-            musicPlay();　//できた
+            danchis[j].style.width = "100%";
         }
-        else
+    }
+    else
+    {
+        for ( j=0; j < danchis.length; j++)
         {
-            return; //できたけど戻ると何回も再生できちゃう
+            danchis[j].style.height = "100%";
         }
     }
 
-    //要素の最新の座標を保存
-    currentX = x;
+    
 }
 
-window.addEventListener("scroll", audioPlay);
-//リロード時の再生判定用カウンターをリセット
-window.addEventListener("load", function(){
-    counter = 0;
-})
+function scroll()
+{
+    //スクロール量を取得
+    y = window.pageYOffset
+    console.log(y);
+    
+    //var scaler = document.getElementById("scaler");
+    //scaler.style.transform = `translateZ(${y / 1000 }px)`
+
+    //スクロール量に応じてコンテンツをz方向に移動
+    //総スクロール量ごとに動かす画像を指定？
+
+    var dis = document.getElementById("discription");
+
+    //途中でフェードイン
+    if ( y > fadein )
+    {
+        
+        dis.style.visibility = "visible"
+        dis.classList.add("fadeIn");
+    }
+    else
+    //トップに戻ったら再びフェードインするように設定
+    {
+        dis.style.visibility = "hidden"
+        dis.classList.remove("fadeIn");
+    }
+
+    //最初のコンテンツをスクロール量に合わせて移動
+    if ( y > p1 )
+    {
+        document.getElementById("danchi").style.transform = `translateZ(${ (y-p1) / zoomRate }px)`;
+        document.getElementById("treeL").style.transform = `translateZ(${ (y-p1) / zoomRate }px)`;
+        document.getElementById("treeR").style.transform = `translateZ(${ (y-p1) / zoomRate }px)`;
+        document.getElementById("cloudL").style.transform = `translateZ(${ (y-p1) / zoomRate }px)`;
+        document.getElementById("cloudR").style.transform = `translateZ(${ (y-p1) / zoomRate }px)`;
+    }
+
+    if ( y > p2 )
+    {
+        let con1 = document.getElementById("con1");
+        let con2 = document.getElementById("con2");
+
+        con1.style.visibility = "visible"
+        con2.style.visibility = "visible"
+        con1.style.transform = `translateZ(${ ( y - p2 ) / zoomRate * 1.3 }px)`
+        con2.style.transform = `translateZ(${ ( y - p2 ) / zoomRate }px)`
+    }
+    else
+    {
+        con1.style.visibility = "hidden"
+        con2.style.visibility = "hidden"
+    }
+
+    //コンテンツのz座標を取得
+    //z座標が0未満または1以上なら非表示にする
+    
+}
+
+//ページ読み込み時と画面リサイズ時にリアルタイムで画面サイズを取得
+window.addEventListener("load",function(){
+    getScreenSize();
+});
+window.addEventListener("scroll",scroll);
+window.onresize = getScreenSize;
