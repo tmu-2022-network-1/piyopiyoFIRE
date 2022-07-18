@@ -1,4 +1,5 @@
 body {
+  height: 100%;
   margin: 0px;
   padding: 0px;
   background-color: rgb(233, 172, 5);
@@ -27,18 +28,42 @@ body {
 }
 
 #con1 {
-  z-index: 0;
+  z-index: -1;
   visibility: hidden;
 }
 
 #con2 {
-  z-index: -1;
+  z-index: 0;
+  visibility: hidden;
+}
+
+#con3 {
+  z-index: -3;
+  visibility: hidden;
+}
+
+#con4 {
+  z-index: -2;
+  visibility: hidden;
+}
+
+#con5 {
+  z-index: -5;
+  visibility: hidden;
+}
+
+#con6 {
+  z-index: -4;
+  visibility: hidden;
+}
+
+#title2 {
   visibility: hidden;
 }
 
 
 body::-webkit-scrollbar {
-    
+    display: none;
 }
 
 #down {
@@ -46,11 +71,6 @@ body::-webkit-scrollbar {
   position: fixed;
   bottom: 0px;
   right: 0px;
-}
-
-#scaler {
-  transform-style: preserve-3d;
-  transform: translateZ(-100);
 }
 
 .contents {
@@ -67,6 +87,22 @@ body::-webkit-scrollbar {
   justify-content: center;
   align-items: center;
   animation-delay: 1s;
+  overflow: hidden;
+}
+
+.danchis2 {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  visibility: hidden;
+  overflow: hidden;
+}
+
+#title2 {
+  position: absolute;
+  text-align: center;
+  top: 0;
 }
 
 .fadeIn{
