@@ -21,7 +21,6 @@ function getScreenSize()
     //現在のウィンドウサイズを取得
     sw = window.innerWidth
     sh = window.innerHeight
-    console.log(sw + "," + sh);
 
     makeContents();
 }
@@ -41,8 +40,6 @@ function makeContents()
     var scroll = document.getElementById("scroll");
     scroll.style.width = `${sw}px`;
     scroll.style.height = `${p6}px`;
-
-    //document.body.style.height = `${p7}px`
 
     var screen = [];
     screen = document.getElementsByClassName("screen");
@@ -99,7 +96,6 @@ function scroll()
 {
     //スクロール量を取得
     y = window.pageYOffset
-    console.log(y);
 
     var dis = document.getElementById("discription");
 
@@ -214,9 +210,6 @@ function scroll()
         document.getElementById("base").style.position = "sticky";
     }
 
-    //コンテンツのz座標を取得
-    //z座標が0未満または1以上なら非表示にする
-    
 }
 
 //ページ読み込み時と画面リサイズ時にリアルタイムで画面サイズを取得
