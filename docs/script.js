@@ -115,9 +115,13 @@ function scroll()
         dis.classList.remove("fadeIn");
     }
 
-    //
-    if ( y > p1 - p1 * 0.1)
+    //雲、木を個別移動
+    if ( y > p1 - p1 * 0.3)
     {
+        document.getElementById("cloudL").style.transform = `translateX(${ ( y - p1 ) * ( p1 - p1 * 0.1 ) / zoomRate }px)`;
+        document.getElementById("cloudR").style.transform = `translateX(${ ( y - p1 ) * ( p1 - p1 * 0.1 ) / zoomRate * -1 }px)`;
+        document.getElementById("treeL").style.transform = `translateX(${ ( y - p1 ) * ( p1 - p1 * 0.1 ) / zoomRate / 10 }px)`;
+        document.getElementById("treeR").style.transform = `translateX(${ ( y - p1 ) * ( p1 - p1 * 0.1 ) / zoomRate / -10 }px)`;
 
     }
 
