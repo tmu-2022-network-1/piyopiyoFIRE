@@ -1,5 +1,3 @@
-gsap.registerPlugin(ScrollTrigger);
-
 var sw;
 var sh;
 var y;
@@ -35,6 +33,7 @@ function makeContents()
     p5 = p4 + zoomRate;
     p6 = p5 + zoomRate;
     p7 = p6 + zoomRate / 2;
+    console.log(p1);
 
     //スクロール用の要素の高さを設定
     var scroll = document.getElementById("scroll");
@@ -64,12 +63,14 @@ function makeContents()
         tops[a].style.width = "70%";
     }
 
+    //画面サイズに合わせて画像サイズを設定
     contents = document.getElementsByClassName("contents");
     for( i=0; i < contents.length; i++)
     {
         contents[i].style.width = "70%";
     }
 
+    //端が切れている画像を画面の長辺に合わせて配置
     danchis = document.getElementsByClassName("danchis");
     danchis2 = document.getElementsByClassName("danchis2")
     if ( sh < sw )
@@ -98,6 +99,7 @@ function scroll()
     y = window.pageYOffset
 
     var dis = document.getElementById("discription");
+    var danchis2 = document.getElementsByClassName("danchis2");
 
     //途中でフェードイン
     if ( y > fadein )
@@ -113,7 +115,13 @@ function scroll()
         dis.classList.remove("fadeIn");
     }
 
-    //最初のコンテンツをスクロール量に合わせて移動
+    //
+    if ( y > p1 - p1 * 0.1)
+    {
+
+    }
+
+    //最初のコンテンツをスクロール量に合わせてz軸移動
     if ( y > p1 )
     {
         document.getElementById("danchi").style.transform = `translateZ(${ (y-p1) / zoomRate }px)`;
@@ -175,7 +183,6 @@ function scroll()
     
     if ( y > p5 )
     {
-        let danchis2 = document.getElementsByClassName("danchis2");
         for ( b=0; b < danchis2.length; b++)
         {
             danchis2[b].style.visibility = "visible";
