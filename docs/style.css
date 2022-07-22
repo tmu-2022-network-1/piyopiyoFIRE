@@ -14,7 +14,7 @@ body {
 }
 
 #title {
-  animation-delay: 1s;
+  animation-delay: 0.5s;
 }
 
 #discription {
@@ -67,7 +67,7 @@ body::-webkit-scrollbar {
   position: fixed;
   bottom: 0px;
   right: 0px;
-  animation-delay: 2s;
+  animation-delay: 1s;
   font-family: 'Noto Sans JP', sans-serif;
 }
 
@@ -76,7 +76,7 @@ body::-webkit-scrollbar {
   position: absolute;
   top: 0px;
   left: 0px;
-  animation-delay: 2s;
+  animation-delay: 1s;
   color: black;
   text-decoration: none;
   font-family: 'Noto Sans JP', sans-serif;
